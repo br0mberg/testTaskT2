@@ -31,12 +31,15 @@ DateTimeFormatter: Используется для форматирования 
 ## Итак, как экспериментировал я:
 Запустил на Tomcat MVC модель, а на Netty WebFlux модель: В Jmeter провёл "нагрузочное тестирование" в 1000 одновременных 
 запросов пользователей в 2 круга. Получил результаты до нагрузки такие: ![Image Alt](https://github.com/br0mberg/testTaskT2/blob/develop/src/main/resources/beforeLoadVVmMVC.png)
-Как можем видеть, 1 поток reactor-http-nio и 10 потоков http-nio-8080-exec до нагрузки.
-После запуска тестирования получили: 
+![Image Alt](https://github.com/br0mberg/testTaskT2/blob/develop/src/main/resources/beforeLoadVVmFlux.png)
+Как можем видеть, 1 поток reactor-http-nio (Flux) и 10 потоков http-nio-8080-exec (MVC) до нагрузки.
+После запуска тестирования получили:
+![Image Alt](https://github.com/br0mberg/testTaskT2/blob/develop/src/main/resources/afterLoadVVmMVC.png)
+![Image Alt](https://github.com/br0mberg/testTaskT2/blob/develop/src/main/resources/afterLoadVVmFlux.png)
 порядка 200 потоков в случае MVC, и 8 потоков в случае Flux.
 
 В Jmeter получил такие результаты:
-
+![Image Alt](https://github.com/br0mberg/testTaskT2/blob/develop/src/main/resources/jMeter.png)
 Из всего проделано для данной конкретной задачи можно сделать вывод:
 
 В ходе работы я познакомился с новым для меня понятием WebFlux, узнал в чём смысл подхода, скрывающимся за данным понятием,
